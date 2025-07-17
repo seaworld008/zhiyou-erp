@@ -1,0 +1,369 @@
+/* 全局样式重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: calc(14px * var(--font-scale, 1));
+}
+
+#app {
+  height: 100%;
+  background-color: var(--bg-body);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+/* CSS 变量定义 */
+:root {
+  /* 默认变量（light主题） */
+  --color-primary: #18a058;
+  --color-primary-hover: #36ad6a;
+  --color-primary-pressed: #0c7a43;
+  --color-primary-suppl: #36ad6a;
+  
+  --color-info: #2080f0;
+  --color-info-hover: #4098fc;
+  --color-info-pressed: #1060c9;
+  --color-info-suppl: #4098fc;
+  
+  --color-warning: #f0a020;
+  --color-warning-hover: #fcb040;
+  --color-warning-pressed: #c97c10;
+  --color-warning-suppl: #fcb040;
+  
+  --color-error: #d03050;
+  --color-error-hover: #de576d;
+  --color-error-pressed: #ab1f3f;
+  --color-error-suppl: #de576d;
+  
+  --color-success: #18a058;
+  --color-success-hover: #36ad6a;
+  --color-success-pressed: #0c7a43;
+  --color-success-suppl: #36ad6a;
+
+  /* 布局变量 */
+  --bg-body: #f5f7fa;
+  --bg-card: #ffffff;
+  --text-primary: #303133;
+  --text-secondary: #606266;
+  --border-color: #dcdfe6;
+  --font-scale: 1;
+
+  /* 工业风格变量 */
+  --industrial-blue: #00D8FF;
+  --industrial-green: #00FF88;
+  --industrial-orange: #FF8C00;
+  --industrial-red: #FF4444;
+  --industrial-bg-dark: #001B2E;
+  --industrial-glass: rgba(255, 255, 255, 0.1);
+}
+
+/* Light 主题 */
+[data-theme="light"] {
+  --bg-body: #f5f7fa;
+  --bg-card: #ffffff;
+  --text-primary: #303133;
+  --text-secondary: #606266;
+  --border-color: #dcdfe6;
+}
+
+/* Dark 主题 */
+[data-theme="dark"] {
+  --bg-body: #1e1e1e;
+  --bg-card: #2b2b2b;
+  --text-primary: #e5eaf3;
+  --text-secondary: #a8adb8;
+  --border-color: #4a4a4a;
+  --color-primary: #3A84FF;
+}
+
+/* Factory 主题（工业大屏） */
+[data-theme="factory"] {
+  --bg-body: #001B2E;
+  --bg-card: rgba(0, 27, 46, 0.6);
+  --text-primary: #ffffff;
+  --text-secondary: #b3d4fc;
+  --border-color: rgba(0, 216, 255, 0.3);
+  --color-primary: #00D8FF;
+  --font-scale: 1.25;
+  
+  /* 工业大屏特效 */
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(0, 216, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(0, 255, 136, 0.1) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* 工具类 */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.rounded {
+  border-radius: 6px;
+}
+
+.rounded-lg {
+  border-radius: 12px;
+}
+
+.shadow {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-lg {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* 工业风格组件 */
+.industrial-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="factory"] .industrial-card {
+  background: linear-gradient(135deg, rgba(0, 216, 255, 0.1) 0%, rgba(0, 27, 46, 0.8) 100%);
+  border: 1px solid rgba(0, 216, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="factory"] .industrial-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--industrial-blue), transparent);
+  animation: scanline 3s infinite;
+}
+
+@keyframes scanline {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* KPI 卡片样式 */
+.kpi-card {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="factory"] .kpi-card {
+  background: linear-gradient(135deg, rgba(0, 216, 255, 0.15) 0%, rgba(0, 27, 46, 0.9) 100%);
+  border: 1px solid rgba(0, 216, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 216, 255, 0.2);
+}
+
+/* 数字动画 */
+.animated-number {
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+[data-theme="factory"] .animated-number {
+  text-shadow: 0 0 10px currentColor;
+}
+
+/* 状态指示器 */
+.status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.status-running {
+  background: var(--color-success);
+  box-shadow: 0 0 6px var(--color-success);
+}
+
+.status-idle {
+  background: var(--color-warning);
+  box-shadow: 0 0 6px var(--color-warning);
+}
+
+.status-downtime {
+  background: var(--color-error);
+  box-shadow: 0 0 6px var(--color-error);
+}
+
+/* 响应式工具类 */
+@media (max-width: 768px) {
+  .mobile-hidden {
+    display: none !important;
+  }
+  
+  [data-theme="factory"] {
+    --font-scale: 1.1;
+  }
+}
+
+@media (min-width: 769px) {
+  .desktop-hidden {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1920px) {
+  [data-theme="factory"] {
+    --font-scale: 1.5;
+  }
+}
+
+/* 动画 */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+
+.slide-enter-active, .slide-leave-active {
+  transition: transform 0.3s ease;
+}
+
+.slide-enter-from {
+  transform: translateX(-100%);
+}
+
+.slide-leave-to {
+  transform: translateX(100%);
+}
+
+/* 跑马灯动画 */
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* 深色主题下的滚动条 */
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* 工厂主题下的滚动条 */
+[data-theme="factory"] ::-webkit-scrollbar-thumb {
+  background: rgba(0, 216, 255, 0.3);
+}
+
+[data-theme="factory"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 216, 255, 0.5);
+}
+
+/* Naive UI 组件样式覆盖 */
+.n-card {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+.n-button--primary-type {
+  background-color: var(--color-primary) !important;
+}
+
+/* 工业大屏特效 */
+[data-theme="factory"] .glow-effect {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
+  }
+  to {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+} 
