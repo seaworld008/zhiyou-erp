@@ -11,38 +11,38 @@ export const mockSops: Sop[] = [
       {
         seq: 1,
         text: '准备工作：检查内胆是否有划痕、变形等缺陷',
-        image: '/api/sop/images/step1.jpg',
+        image: '',
         timer_sec: 30
       },
       {
         seq: 2,
         text: '清洁内胆：使用无尘布擦拭内胆内外表面',
-        image: '/api/sop/images/step2.jpg',
+        image: '',
         timer_sec: 45
       },
       {
         seq: 3,
         text: '安装温度传感器：将传感器插入指定孔位，确保接触良好',
-        image: '/api/sop/images/step3.jpg',
-        video: '/api/sop/videos/sensor_install.mp4',
+        image: '',
+        video: '',
         timer_sec: 120
       },
       {
         seq: 4,
         text: '密封圈安装：将密封圈按压到位，检查无气泡无翘起',
-        image: '/api/sop/images/step4.jpg',
+        image: '',
         timer_sec: 60
       },
       {
         seq: 5,
         text: '功能测试：连接测试设备，检测加热和温控功能',
-        video: '/api/sop/videos/function_test.mp4',
+        video: '',
         timer_sec: 180
       },
       {
         seq: 6,
         text: '质量检查：目视检查装配质量，填写检查清单',
-        image: '/api/sop/images/step6.jpg',
+        image: '',
         timer_sec: 90
       }
     ],
@@ -64,12 +64,12 @@ export const mockSops: Sop[] = [
     attachments: [
       {
         type: 'pdf',
-        url: '/api/sop/docs/asm001_manual.pdf',
+        url: '',
         desc: '详细作业指导书'
       },
       {
         type: 'image',
-        url: '/api/sop/images/tools_layout.jpg',
+        url: '',
         desc: '工具摆放示意图'
       }
     ],
@@ -79,146 +79,161 @@ export const mockSops: Sop[] = [
   },
   {
     id: 'SOP-002',
-    product_code: 'TIP-AF-5L',
-    process_code: 'ASM-002',
+    product_code: 'XSDD1710006',
+    process_code: 'GXXX-002',
+    title: '面板装配作业指导书',
     version: 'v1.8',
-    title: '智能空气炸锅5L - 外壳组装工序',
     steps: [
       {
         seq: 1,
-        text: '检查外壳件：确认外壳无裂纹、色差、变形',
-        image: '/api/sop/images/af_step1.jpg',
-        timer_sec: 45
+        title: '材料准备',
+        description: '准备面板装配所需材料',
+        image: '',  // 移除不存在的图片URL
+        key_points: ['面板数量确认', '螺丝规格检查'],
+        warnings: ['检查面板表面质量']
       },
       {
         seq: 2,
-        text: '安装控制面板：对准定位孔，轻压到位听到咔嚓声',
-        image: '/api/sop/images/af_step2.jpg',
-        video: '/api/sop/videos/panel_install.mp4',
-        timer_sec: 90
+        title: '面板安装',
+        description: '按照标准流程安装面板',
+        image: '',  // 移除不存在的图片URL
+        video: '',  // 移除不存在的视频URL
+        key_points: ['位置对齐', '固定牢靠'],
+        warnings: ['避免划伤面板']
       },
       {
         seq: 3,
-        text: '连接线束：按颜色对应插接线束，确保插接牢固',
-        image: '/api/sop/images/af_step3.jpg',
-        timer_sec: 120
+        title: '门体安装',
+        description: '安装门体组件',
+        image: '',  // 移除不存在的图片URL
+        key_points: ['门体水平度', '开关顺畅'],
+        warnings: ['注意手部安全']
       },
       {
         seq: 4,
-        text: '安装门体：调整门体间隙，确保开合顺畅',
-        video: '/api/sop/videos/door_install.mp4',
-        timer_sec: 150
-      },
-      {
-        seq: 5,
-        text: '功能测试：开机测试显示、按键、门锁功能',
-        timer_sec: 180
+        title: '整体检查',
+        description: '最终质量检查',
+        video: '',  // 移除不存在的视频URL
+        key_points: ['外观检查', '功能测试'],
+        warnings: ['确保所有螺丝紧固']
       }
     ],
-    std_time_sec: 585, // 9分45秒
-    tools: ['十字螺丝刀', '一字螺丝刀', '测试治具'],
-    qc_points: [
-      '外壳外观无缺陷',
-      '面板按键回弹正常',
-      '线束插接牢固',
-      '门体间隙≤1.5mm',
-      '功能测试全部通过'
+    tools: [
+      '电动螺丝刀',
+      '水平仪',
+      '卷尺'
     ],
     safety_points: [
-      '轻拿轻放外壳件',
-      '注意线束不要用力拉扯',
-      '测试时注意触电'
+      '佩戴安全眼镜',
+      '注意锐利边缘'
     ],
-    attachments: [
-      {
-        type: 'pdf',
-        url: '/api/sop/docs/asm002_manual.pdf',
-        desc: '组装作业指导书'
-      }
-    ],
-    updated_at: '2025-01-12T14:20:00Z',
-    updated_by: '工艺工程师-李明',
+    attachments: [],
+    updated_at: '2025-01-15T14:20:00Z',
+    updated_by: '班组长-李四',
     enabled: true
   },
   {
     id: 'SOP-003',
-    product_code: 'TIP-BM-2L',
-    process_code: 'TEST-001',
+    product_code: 'XSDD1710007',
+    process_code: 'GXXX-003',
+    title: '电路板测试作业指导书',
     version: 'v3.1',
-    title: '多功能破壁机2L - 最终测试工序',
     steps: [
       {
         seq: 1,
-        text: '外观检查：检查产品外观，确认无划痕、污渍',
-        timer_sec: 60
+        title: '测试准备',
+        description: '准备测试设备和环境',
+        key_points: ['设备校准', '环境温湿度检查'],
+        warnings: ['确保测试设备正常']
       },
       {
         seq: 2,
-        text: '安全测试：进行漏电流、绝缘阻抗测试',
-        video: '/api/sop/videos/safety_test.mp4',
-        timer_sec: 240
+        title: '外观检查',
+        description: '检查电路板外观是否有缺陷',
+        key_points: ['焊点质量', '元件位置', '标识清晰'],
+        warnings: ['注意静电防护']
       },
       {
         seq: 3,
-        text: '功能测试：测试各档位运行，检查噪音',
-        timer_sec: 300
+        title: '功能测试',
+        description: '进行电路板功能测试',
+        key_points: ['测试所有功能点', '记录测试数据'],
+        warnings: ['按照测试序列进行']
       },
       {
         seq: 4,
-        text: '包装准备：清洁产品，准备包装材料',
-        timer_sec: 90
+        title: '安全测试',
+        description: '进行电气安全测试',
+        video: '',  // 移除不存在的视频URL
+        key_points: ['绝缘电阻测试', '耐压测试'],
+        warnings: ['严格按照安全规程操作']
+      },
+      {
+        seq: 5,
+        title: '结果记录',
+        description: '记录测试结果并处理',
+        key_points: ['填写测试报告', '不合格品标识'],
+        warnings: ['确保记录准确']
       }
     ],
-    std_time_sec: 690, // 11分30秒
-    tools: ['安规测试仪', '噪音计', '计时器'],
-    qc_points: [
-      '外观无缺陷',
-      '漏电流<0.25mA',
-      '绝缘阻抗>5MΩ',
-      '噪音<65dB',
-      '各档位功能正常'
+    tools: [
+      '万用表',
+      '示波器',
+      '电源',
+      '测试治具'
     ],
     safety_points: [
-      '测试时注意高压',
-      '佩戴防护用品',
-      '测试区域禁止饮食'
+      '遵守电气安全规范',
+      '佩戴防静电设备',
+      '注意高压危险'
     ],
     attachments: [],
-    updated_at: '2025-01-10T09:15:00Z',
-    updated_by: '测试工程师-王芳',
+    updated_at: '2025-01-16T11:45:00Z',
+    updated_by: '质检员-王五',
     enabled: true
   },
   {
     id: 'SOP-004',
-    product_code: 'TIP-EG-001',
-    process_code: 'PCK-001',
+    product_code: 'XSDD1710008',
+    process_code: 'GXXX-004',
+    title: '产品包装作业指导书',
     version: 'v2.0',
-    title: '智能蒸蛋器 - 包装工序',
     steps: [
       {
         seq: 1,
-        text: '准备包装材料：检查包装盒、说明书、配件完整性',
-        timer_sec: 45
+        title: '包装准备',
+        description: '准备包装材料和工具',
+        image: '',  // 移除不存在的图片URL
+        key_points: ['包装盒检查', '填充物准备', '标签打印'],
+        warnings: ['确保包装材料无损坏']
       },
       {
         seq: 2,
-        text: '产品装盒：按照包装示意图放置产品和配件',
-        image: '/api/sop/images/pack_layout.jpg',
-        timer_sec: 90
+        title: '产品装箱',
+        description: '按照标准将产品装入包装盒',
+        key_points: ['产品清洁', '防护到位', '摆放整齐'],
+        warnings: ['避免产品碰撞']
       },
       {
         seq: 3,
-        text: '封箱贴标：封胶带，贴产品标签和条形码',
-        timer_sec: 60
+        title: '标签贴附',
+        description: '贴附产品标签和包装标签',
+        key_points: ['标签位置准确', '信息核对', '贴附牢固'],
+        warnings: ['确保标签内容正确']
+      },
+      {
+        seq: 4,
+        title: '封箱检查',
+        description: '最终封箱和质量检查',
+        key_points: ['封箱牢固', '外观整洁', '重量核对'],
+        warnings: ['检查包装完整性']
       }
     ],
-    std_time_sec: 195, // 3分15秒
-    tools: ['胶带机', '标签打印机', '称重秤'],
-    qc_points: [
-      '配件齐全',
-      '包装牢固',
-      '标签信息正确',
-      '重量符合要求'
+    tools: [
+      '包装盒',
+      '胶带',
+      '标签打印机',
+      '电子秤'
     ],
     safety_points: [
       '小心包装刀具',
@@ -227,7 +242,7 @@ export const mockSops: Sop[] = [
     attachments: [
       {
         type: 'image',
-        url: '/api/sop/images/pack_standard.jpg',
+        url: '',  // 移除不存在的图片URL
         desc: '包装标准示例'
       }
     ],
