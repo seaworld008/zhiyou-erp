@@ -493,7 +493,7 @@ watch(route, () => {
           transition: all 0.3s ease;
           
           &:hover {
-            background-color: rgba(64, 158, 255, 0.06);
+            color: var(--el-text-color-primary);
           }
           
           .el-icon {
@@ -630,7 +630,6 @@ watch(route, () => {
             color: rgba(255, 255, 255, 0.9);
             
             &:hover {
-              background-color: rgba(0, 216, 255, 0.06);
               color: #00D8FF;
             }
           }
@@ -707,7 +706,6 @@ watch(route, () => {
             color: var(--el-text-color-regular);
             
             &:hover {
-              background-color: rgba(64, 158, 255, 0.08);
               color: var(--el-text-color-primary);
             }
           }
