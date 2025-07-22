@@ -431,48 +431,126 @@ watch(route, () => {
     :deep(.el-menu) {
       border-right: none;
       
-      .el-sub-menu__title,
-      .el-menu-item {
+      // 一级菜单项样式
+      > .el-menu-item,
+      > .el-sub-menu > .el-sub-menu__title {
         height: 48px;
         line-height: 48px;
         display: flex;
         align-items: center;
         padding: 0 20px;
+        position: relative;
+        transition: all 0.3s ease;
         
         &:hover {
-          background-color: rgba(64, 158, 255, 0.1);
+          background-color: rgba(64, 158, 255, 0.08);
+          box-shadow: inset 0 0 0 1px rgba(64, 158, 255, 0.2);
         }
-      }
-
-      .el-sub-menu__title {
+        
         .el-icon {
-          margin-right: 8px;
-          width: 16px;
-          height: 16px;
+          margin-right: 12px;
+          width: 18px;
+          height: 18px;
           display: flex;
           align-items: center;
           justify-content: center;
+          font-size: 16px;
         }
         
         span {
           flex: 1;
+          font-weight: 500;
         }
       }
-
-      .el-menu-item {
-        .el-icon {
-          margin-right: 8px;
-          width: 16px;
-          height: 16px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
+      
+      // 一级菜单激活状态
+      > .el-menu-item.is-active {
+        background-color: rgba(64, 158, 255, 0.15);
+        border-right: 4px solid var(--el-color-primary);
+        box-shadow: inset 0 0 0 1px rgba(64, 158, 255, 0.3);
+        color: var(--el-color-primary);
+        font-weight: 600;
       }
-
-      .el-menu-item.is-active {
-        background-color: rgba(64, 158, 255, 0.1);
-        border-right: 3px solid var(--el-color-primary);
+      
+      // 展开的子菜单容器
+      .el-sub-menu.is-opened > .el-sub-menu__title {
+        background-color: rgba(64, 158, 255, 0.12);
+        box-shadow: inset 0 0 0 1px rgba(64, 158, 255, 0.25);
+        color: var(--el-color-primary);
+        font-weight: 600;
+      }
+      
+      // 二级菜单项样式
+      .el-sub-menu .el-menu {
+        background-color: rgba(0, 0, 0, 0.02);
+        
+        .el-menu-item {
+          height: 44px;
+          line-height: 44px;
+          padding-left: 52px; // 增加缩进
+          padding-right: 20px;
+          position: relative;
+          transition: all 0.3s ease;
+          
+          // 添加左侧缩进指示线
+          &::before {
+            content: '';
+            position: absolute;
+            left: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 1px;
+            background-color: rgba(64, 158, 255, 0.3);
+            transition: all 0.3s ease;
+          }
+          
+          &:hover {
+            background-color: rgba(64, 158, 255, 0.06);
+            padding-left: 54px;
+            
+            &::before {
+              width: 12px;
+              background-color: rgba(64, 158, 255, 0.5);
+            }
+          }
+          
+          .el-icon {
+            margin-right: 10px;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            opacity: 0.8;
+          }
+          
+          span {
+            font-size: 14px;
+            font-weight: 400;
+          }
+        }
+        
+        // 二级菜单激活状态
+        .el-menu-item.is-active {
+          background-color: rgba(64, 158, 255, 0.12);
+          border-right: 3px solid var(--el-color-primary);
+          color: var(--el-color-primary);
+          font-weight: 500;
+          padding-left: 56px;
+          
+          &::before {
+            width: 16px;
+            height: 2px;
+            background-color: var(--el-color-primary);
+          }
+          
+          .el-icon {
+            opacity: 1;
+            color: var(--el-color-primary);
+          }
+        }
       }
     }
   }
@@ -544,21 +622,65 @@ watch(route, () => {
       :deep(.el-menu) {
         background: transparent;
 
-        .el-sub-menu__title,
-        .el-menu-item {
+        // 工厂主题一级菜单
+        > .el-menu-item,
+        > .el-sub-menu > .el-sub-menu__title {
           color: #ffffff;
           
           &:hover {
-            background-color: rgba(0, 216, 255, 0.1);
+            background-color: rgba(0, 216, 255, 0.08);
+            box-shadow: inset 0 0 0 1px rgba(0, 216, 255, 0.3);
             color: #00D8FF;
           }
         }
-
-        .el-menu-item.is-active {
+        
+        > .el-menu-item.is-active {
           background-color: rgba(0, 216, 255, 0.2);
-          border-right: 3px solid #00D8FF;
+          border-right: 4px solid #00D8FF;
+          box-shadow: inset 0 0 0 1px rgba(0, 216, 255, 0.4);
           color: #00D8FF;
           text-shadow: 0 0 8px rgba(0, 216, 255, 0.5);
+        }
+        
+        .el-sub-menu.is-opened > .el-sub-menu__title {
+          background-color: rgba(0, 216, 255, 0.15);
+          box-shadow: inset 0 0 0 1px rgba(0, 216, 255, 0.35);
+          color: #00D8FF;
+          text-shadow: 0 0 6px rgba(0, 216, 255, 0.4);
+        }
+        
+        // 工厂主题二级菜单
+        .el-sub-menu .el-menu {
+          background-color: rgba(0, 27, 46, 0.3);
+          
+          .el-menu-item {
+            color: rgba(255, 255, 255, 0.9);
+            
+            &::before {
+              background-color: rgba(0, 216, 255, 0.4);
+            }
+            
+            &:hover {
+              background-color: rgba(0, 216, 255, 0.06);
+              color: #00D8FF;
+              
+              &::before {
+                background-color: rgba(0, 216, 255, 0.6);
+              }
+            }
+          }
+          
+          .el-menu-item.is-active {
+            background-color: rgba(0, 216, 255, 0.15);
+            border-right: 3px solid #00D8FF;
+            color: #00D8FF;
+            text-shadow: 0 0 6px rgba(0, 216, 255, 0.4);
+            
+            &::before {
+              background-color: #00D8FF;
+              box-shadow: 0 0 4px rgba(0, 216, 255, 0.5);
+            }
+          }
         }
       }
     }
@@ -591,6 +713,64 @@ watch(route, () => {
 
         .logo-text {
           color: var(--el-text-color-primary);
+        }
+      }
+      
+      :deep(.el-menu) {
+        // 暗黑主题一级菜单
+        > .el-menu-item,
+        > .el-sub-menu > .el-sub-menu__title {
+          color: var(--el-text-color-primary);
+          
+          &:hover {
+            background-color: rgba(64, 158, 255, 0.1);
+            box-shadow: inset 0 0 0 1px rgba(64, 158, 255, 0.25);
+          }
+        }
+        
+        > .el-menu-item.is-active {
+          background-color: rgba(64, 158, 255, 0.18);
+          border-right: 4px solid var(--el-color-primary);
+          box-shadow: inset 0 0 0 1px rgba(64, 158, 255, 0.35);
+          color: var(--el-color-primary);
+        }
+        
+        .el-sub-menu.is-opened > .el-sub-menu__title {
+          background-color: rgba(64, 158, 255, 0.15);
+          box-shadow: inset 0 0 0 1px rgba(64, 158, 255, 0.3);
+          color: var(--el-color-primary);
+        }
+        
+        // 暗黑主题二级菜单
+        .el-sub-menu .el-menu {
+          background-color: rgba(0, 0, 0, 0.1);
+          
+          .el-menu-item {
+            color: var(--el-text-color-regular);
+            
+            &::before {
+              background-color: rgba(64, 158, 255, 0.4);
+            }
+            
+            &:hover {
+              background-color: rgba(64, 158, 255, 0.08);
+              color: var(--el-text-color-primary);
+              
+              &::before {
+                background-color: rgba(64, 158, 255, 0.6);
+              }
+            }
+          }
+          
+          .el-menu-item.is-active {
+            background-color: rgba(64, 158, 255, 0.15);
+            border-right: 3px solid var(--el-color-primary);
+            color: var(--el-color-primary);
+            
+            &::before {
+              background-color: var(--el-color-primary);
+            }
+          }
         }
       }
     }
