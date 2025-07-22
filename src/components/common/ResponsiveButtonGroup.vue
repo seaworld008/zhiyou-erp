@@ -23,7 +23,7 @@
         :trigger="button.trigger || 'click'"
         :placement="button.placement || 'bottom'"
         :disabled="button.disabled"
-        @command="(command) => handleDropdownCommand(button, command)"
+        @command="(command: string) => handleDropdownCommand(button, command)"
       >
         <el-button
           :type="button.buttonType || 'default'"
