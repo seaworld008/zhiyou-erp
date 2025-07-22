@@ -515,7 +515,6 @@ watch(route, () => {
         
         // 二级菜单激活状态
         .el-menu-item.is-active {
-          background-color: rgba(64, 158, 255, 0.12);
           border-right: 3px solid var(--el-color-primary);
           color: var(--el-color-primary);
           font-weight: 500;
@@ -637,10 +636,8 @@ watch(route, () => {
           }
           
           .el-menu-item.is-active {
-            background-color: rgba(0, 216, 255, 0.15);
             border-right: 3px solid #00D8FF;
             color: #00D8FF;
-            text-shadow: 0 0 6px rgba(0, 216, 255, 0.4);
           }
         }
       }
@@ -716,7 +713,6 @@ watch(route, () => {
           }
           
           .el-menu-item.is-active {
-            background-color: rgba(64, 158, 255, 0.15);
             border-right: 3px solid var(--el-color-primary);
             color: var(--el-color-primary);
           }
