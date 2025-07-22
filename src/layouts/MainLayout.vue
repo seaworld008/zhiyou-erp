@@ -435,9 +435,38 @@ watch(route, () => {
       .el-menu-item {
         height: 48px;
         line-height: 48px;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
         
         &:hover {
           background-color: rgba(64, 158, 255, 0.1);
+        }
+      }
+
+      .el-sub-menu__title {
+        .el-icon {
+          margin-right: 8px;
+          width: 16px;
+          height: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        
+        span {
+          flex: 1;
+        }
+      }
+
+      .el-menu-item {
+        .el-icon {
+          margin-right: 8px;
+          width: 16px;
+          height: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
       }
 
