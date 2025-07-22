@@ -494,7 +494,6 @@ watch(route, () => {
           
           &:hover {
             background-color: rgba(64, 158, 255, 0.06);
-            padding-left: 54px;
           }
           
           .el-icon {
@@ -520,7 +519,6 @@ watch(route, () => {
           border-right: 3px solid var(--el-color-primary);
           color: var(--el-color-primary);
           font-weight: 500;
-          padding-left: 56px;
           
           .el-icon {
             opacity: 1;
