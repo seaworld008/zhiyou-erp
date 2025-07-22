@@ -163,25 +163,43 @@
           </el-sub-menu>
 
           <!-- 消息中心 -->
-          <el-menu-item index="/message/center" route="/message/center">
-            <el-icon><Bell /></el-icon>
-            <span>消息中心</span>
-          </el-menu-item>
+          <el-sub-menu index="9">
+            <template #title>
+              <el-icon><Bell /></el-icon>
+              <span>消息中心</span>
+            </template>
+            <el-menu-item index="/message/center" route="/message/center">
+              <el-icon><Bell /></el-icon>
+              <span>消息列表</span>
+            </el-menu-item>
+          </el-sub-menu>
 
           <!-- Andon系统 -->
-          <el-menu-item index="/andon/system" route="/andon/system">
-            <el-icon><Warning /></el-icon>
-            <span>Andon系统</span>
-          </el-menu-item>
+          <el-sub-menu index="10">
+            <template #title>
+              <el-icon><Warning /></el-icon>
+              <span>Andon系统</span>
+            </template>
+            <el-menu-item index="/andon/system" route="/andon/system">
+              <el-icon><Warning /></el-icon>
+              <span>异常看板</span>
+            </el-menu-item>
+          </el-sub-menu>
 
           <!-- 报表中心 -->
-          <el-menu-item index="/reports/center" route="/reports/center">
-            <el-icon><TrendCharts /></el-icon>
-            <span>报表中心</span>
-          </el-menu-item>
+          <el-sub-menu index="11">
+            <template #title>
+              <el-icon><TrendCharts /></el-icon>
+              <span>报表中心</span>
+            </template>
+            <el-menu-item index="/reports/center" route="/reports/center">
+              <el-icon><TrendCharts /></el-icon>
+              <span>数据报表</span>
+            </el-menu-item>
+          </el-sub-menu>
 
           <!-- 系统管理 -->
-          <el-sub-menu index="9">
+          <el-sub-menu index="12">
             <template #title>
               <el-icon><Setting /></el-icon>
               <span>系统管理</span>
@@ -558,4 +576,4 @@ watch(route, () => {
     }
   }
 }
-</style> 
+</style>
