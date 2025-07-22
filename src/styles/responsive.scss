@@ -1,0 +1,429 @@
+// PC端响应式布局优化配置
+// 志友ERP系统 - 响应式设计增强
+
+@use 'sass:map';
+
+// 断点定义
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  xxxl: 1600px,
+  ultra: 1920px
+);
+
+// 媒体查询混合器
+@mixin respond-to($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (min-width: map.get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+@mixin respond-below($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (max-width: map.get($breakpoints, $breakpoint) - 1px) {
+      @content;
+    }
+  }
+}
+
+@mixin respond-between($lower, $upper) {
+  @if map.has-key($breakpoints, $lower) and map.has-key($breakpoints, $upper) {
+    @media (min-width: map.get($breakpoints, $lower)) and (max-width: map.get($breakpoints, $upper) - 1px) {
+      @content;
+    }
+  }
+}
+
+// PC端优化的容器宽度
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+  
+  @include respond-to(sm) {
+    max-width: 540px;
+    padding: 0 20px;
+  }
+  
+  @include respond-to(md) {
+    max-width: 720px;
+    padding: 0 24px;
+  }
+  
+  @include respond-to(lg) {
+    max-width: 960px;
+    padding: 0 32px;
+  }
+  
+  @include respond-to(xl) {
+    max-width: 1140px;
+    padding: 0 40px;
+  }
+  
+  @include respond-to(xxl) {
+    max-width: 1320px;
+    padding: 0 48px;
+  }
+  
+  @include respond-to(xxxl) {
+    max-width: 1520px;
+    padding: 0 56px;
+  }
+  
+  @include respond-to(ultra) {
+    max-width: 1800px;
+    padding: 0 64px;
+  }
+}
+
+// PC端网格系统优化
+.grid {
+  display: grid;
+  gap: 20px;
+  
+  @include respond-to(md) {
+    gap: 24px;
+  }
+  
+  @include respond-to(lg) {
+    gap: 32px;
+  }
+  
+  @include respond-to(xl) {
+    gap: 40px;
+  }
+}
+
+// 常用网格布局
+.grid-2 {
+  @extend .grid;
+  grid-template-columns: 1fr;
+  
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.grid-3 {
+  @extend .grid;
+  grid-template-columns: 1fr;
+  
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @include respond-to(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.grid-4 {
+  @extend .grid;
+  grid-template-columns: 1fr;
+  
+  @include respond-to(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @include respond-to(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  @include respond-to(xl) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.grid-6 {
+  @extend .grid;
+  grid-template-columns: repeat(2, 1fr);
+  
+  @include respond-to(sm) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  @include respond-to(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  @include respond-to(xl) {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+// PC端卡片优化
+.card-responsive {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px;
+  transition: all 0.3s ease;
+  
+  @include respond-to(md) {
+    padding: 20px;
+    border-radius: 12px;
+  }
+  
+  @include respond-to(lg) {
+    padding: 24px;
+  }
+  
+  @include respond-to(xl) {
+    padding: 32px;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    
+    @include respond-to(lg) {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+
+// PC端表格优化
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  
+  @include respond-to(lg) {
+    overflow-x: visible;
+  }
+  
+  table {
+    width: 100%;
+    min-width: 600px;
+    
+    @include respond-to(lg) {
+      min-width: auto;
+    }
+  }
+}
+
+// PC端按钮组优化
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  
+  @include respond-to(sm) {
+    flex-direction: row;
+    gap: 12px;
+  }
+  
+  @include respond-to(lg) {
+    gap: 16px;
+  }
+}
+
+// PC端表单优化
+.form-responsive {
+  .form-row {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 1fr;
+    
+    @include respond-to(md) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    
+    @include respond-to(lg) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    
+    @include respond-to(xl) {
+      gap: 32px;
+    }
+  }
+  
+  .form-item {
+    margin-bottom: 16px;
+    
+    @include respond-to(md) {
+      margin-bottom: 20px;
+    }
+    
+    @include respond-to(lg) {
+      margin-bottom: 24px;
+    }
+  }
+}
+
+// PC端导航优化
+.nav-responsive {
+  .nav-item {
+    padding: 8px 12px;
+    
+    @include respond-to(md) {
+      padding: 10px 16px;
+    }
+    
+    @include respond-to(lg) {
+      padding: 12px 20px;
+    }
+  }
+}
+
+// PC端字体大小优化
+.text-responsive {
+  font-size: 14px;
+  
+  @include respond-to(md) {
+    font-size: 15px;
+  }
+  
+  @include respond-to(lg) {
+    font-size: 16px;
+  }
+  
+  @include respond-to(xl) {
+    font-size: 17px;
+  }
+  
+  @include respond-to(ultra) {
+    font-size: 18px;
+  }
+}
+
+.title-responsive {
+  font-size: 18px;
+  
+  @include respond-to(md) {
+    font-size: 20px;
+  }
+  
+  @include respond-to(lg) {
+    font-size: 24px;
+  }
+  
+  @include respond-to(xl) {
+    font-size: 28px;
+  }
+  
+  @include respond-to(ultra) {
+    font-size: 32px;
+  }
+}
+
+// PC端间距优化
+.spacing-responsive {
+  .mb-responsive {
+    margin-bottom: 16px;
+    
+    @include respond-to(md) {
+      margin-bottom: 20px;
+    }
+    
+    @include respond-to(lg) {
+      margin-bottom: 24px;
+    }
+    
+    @include respond-to(xl) {
+      margin-bottom: 32px;
+    }
+  }
+  
+  .mt-responsive {
+    margin-top: 16px;
+    
+    @include respond-to(md) {
+      margin-top: 20px;
+    }
+    
+    @include respond-to(lg) {
+      margin-top: 24px;
+    }
+    
+    @include respond-to(xl) {
+      margin-top: 32px;
+    }
+  }
+}
+
+// PC端侧边栏优化
+.sidebar-responsive {
+  width: 200px;
+  
+  @include respond-to(lg) {
+    width: 240px;
+  }
+  
+  @include respond-to(xl) {
+    width: 280px;
+  }
+  
+  @include respond-to(ultra) {
+    width: 320px;
+  }
+  
+  &.collapsed {
+    width: 64px;
+    
+    @include respond-to(lg) {
+      width: 72px;
+    }
+  }
+}
+
+// PC端内容区域优化
+.content-responsive {
+  padding: 16px;
+  
+  @include respond-to(md) {
+    padding: 20px;
+  }
+  
+  @include respond-to(lg) {
+    padding: 24px;
+  }
+  
+  @include respond-to(xl) {
+    padding: 32px;
+  }
+  
+  @include respond-to(ultra) {
+    padding: 40px;
+  }
+}
+
+// 高分辨率显示器优化
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .high-dpi {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+// 超宽屏优化
+@media (min-width: 2560px) {
+  .ultra-wide {
+    max-width: 2400px;
+    margin: 0 auto;
+  }
+}
+
+// 打印样式优化
+@media print {
+  .print-hidden {
+    display: none !important;
+  }
+  
+  .print-visible {
+    display: block !important;
+  }
+  
+  .card-responsive {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+}

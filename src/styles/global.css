@@ -253,6 +253,94 @@ html, body {
 }
 
 /* 响应式工具类 */
+.mobile-hidden {
+  @media (max-width: 768px) {
+    display: none !important;
+  }
+}
+
+.desktop-hidden {
+  @media (min-width: 769px) {
+    display: none !important;
+  }
+}
+
+.tablet-hidden {
+  @media (min-width: 769px) and (max-width: 1024px) {
+    display: none !important;
+  }
+}
+
+/* 响应式布局工具类 */
+.content-responsive {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  
+  @media (max-width: 768px) {
+    padding: 0 var(--spacing-md);
+  }
+  
+  @media (max-width: 480px) {
+    padding: 0 var(--spacing-sm);
+  }
+}
+
+.grid-responsive {
+  display: grid;
+  gap: var(--spacing-lg);
+  
+  @media (max-width: 768px) {
+    gap: var(--spacing-md);
+  }
+  
+  @media (max-width: 480px) {
+    gap: var(--spacing-sm);
+  }
+}
+
+.grid-auto-fit {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+  
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.flex-responsive {
+  display: flex;
+  gap: var(--spacing-lg);
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+}
+
+/* 响应式字体缩放 */
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1400px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1920px) {
+  html {
+    font-size: 18px;
+  }
+}
+
 @media (max-width: 768px) {
   .mobile-hidden {
     display: none !important;
@@ -366,4 +454,4 @@ html, body {
   to {
     text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
   }
-} 
+}

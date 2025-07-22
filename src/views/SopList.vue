@@ -311,8 +311,8 @@ const editSop = (sop: Sop) => {
 }
 
 const playSop = (sop: Sop) => {
-  ElMessage.info(`播放SOP: ${sop.title}`)
-  // 这里应该跳转到SOP播放页面
+  // 跳转到SOP播放页面，传递SOP ID
+  window.open(`/sop/play?id=${sop.id}`, '_blank')
 }
 
 const deleteSop = async (sop: Sop) => {
@@ -459,4 +459,4 @@ onMounted(() => {
 :deep(.el-form--inline .el-form-item) {
   margin-right: 16px;
 }
-</style> 
+</style>

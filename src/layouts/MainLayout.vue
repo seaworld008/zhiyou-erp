@@ -398,18 +398,36 @@ watch(route, () => {
 </script>
 
 <style scoped lang="scss">
+@import '@/styles/responsive.scss';
+
 .main-layout {
   height: 100vh;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 
   .layout-container {
     height: 100%;
+    display: flex;
+    flex: 1;
+    min-height: 0;
   }
 
   .sidebar {
     background: var(--el-bg-color);
     border-right: 1px solid var(--el-border-color-light);
-    transition: width 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 100;
+    
+    @include respond-to(lg) {
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    @include respond-to(xl) {
+      box-shadow: 4px 0 12px rgba(0, 0, 0, 0.08);
+    }
 
     .logo {
       height: 60px;
@@ -444,7 +462,6 @@ watch(route, () => {
         
         &:hover {
           background-color: rgba(64, 158, 255, 0.08);
-          box-shadow: inset 0 0 0 1px rgba(64, 158, 255, 0.2);
         }
         
         .el-icon {
@@ -467,7 +484,6 @@ watch(route, () => {
       > .el-menu-item.is-active {
         background-color: rgba(64, 158, 255, 0.15);
         border-right: 4px solid var(--el-color-primary);
-        box-shadow: inset 0 0 0 1px rgba(64, 158, 255, 0.3);
         color: var(--el-color-primary);
         font-weight: 600;
       }
@@ -475,9 +491,14 @@ watch(route, () => {
       // 展开的子菜单容器
       .el-sub-menu.is-opened > .el-sub-menu__title {
         background-color: rgba(64, 158, 255, 0.12);
-        box-shadow: inset 0 0 0 1px rgba(64, 158, 255, 0.25);
         color: var(--el-color-primary);
         font-weight: 600;
+        
+        span {
+           background: linear-gradient(90deg, transparent, rgba(64, 158, 255, 0.1), transparent);
+           padding: 2px 4px;
+           border-radius: 3px;
+         }
       }
       
       // 二级菜单项样式
@@ -515,9 +536,10 @@ watch(route, () => {
         
         // 二级菜单激活状态
         .el-menu-item.is-active {
+          background-color: rgba(64, 158, 255, 0.1);
           border-right: 3px solid var(--el-color-primary);
           color: var(--el-color-primary);
-          font-weight: 500;
+          font-weight: 600;
           
           .el-icon {
             opacity: 1;
@@ -532,26 +554,85 @@ watch(route, () => {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 24px;
+    padding: 0 20px;
     background: var(--el-bg-color);
     border-bottom: 1px solid var(--el-border-color-light);
-    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 21, 41, 0.06);
+    height: 60px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 99;
+    backdrop-filter: blur(8px);
+    
+    @include respond-to(md) {
+      padding: 0 24px;
+      height: 64px;
+    }
+    
+    @include respond-to(lg) {
+      padding: 0 32px;
+      height: 68px;
+      box-shadow: 0 4px 12px rgba(0, 21, 41, 0.08);
+    }
+    
+    @include respond-to(xl) {
+      padding: 0 40px;
+      height: 72px;
+    }
 
     .header-left {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
+      
+      @include respond-to(md) {
+        gap: 16px;
+      }
+      
+      @include respond-to(lg) {
+        gap: 20px;
+      }
+      
+      .collapse-btn {
+        transition: all 0.3s ease;
+        
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+      
+      .breadcrumb {
+        @include respond-below(md) {
+          display: none;
+        }
+      }
     }
 
     .header-right {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
+      
+      @include respond-to(md) {
+        gap: 16px;
+      }
+      
+      @include respond-to(lg) {
+        gap: 20px;
+      }
 
       .message-badge {
         :deep(.el-badge__content) {
           top: 8px;
           right: 8px;
+        }
+        
+        .el-button {
+          transition: all 0.3s ease;
+          
+          &:hover {
+            transform: translateY(-1px);
+          }
         }
       }
 
@@ -560,10 +641,28 @@ watch(route, () => {
         align-items: center;
         gap: 8px;
         padding: 8px 12px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        
+        @include respond-to(lg) {
+          padding: 10px 16px;
+          border-radius: 12px;
+        }
+        
+        &:hover {
+          background: var(--el-bg-color-overlay);
+          transform: translateY(-1px);
+        }
 
         .username {
           font-size: 14px;
           color: var(--el-text-color-primary);
+          font-weight: 500;
+          
+          @include respond-to(lg) {
+            font-size: 15px;
+          }
         }
       }
     }
@@ -572,7 +671,30 @@ watch(route, () => {
   .main-content {
     background: var(--el-bg-color-page);
     overflow-y: auto;
+    overflow-x: hidden;
     padding: 0;
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    
+    // 自定义滚动条
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 3px;
+      transition: background 0.3s ease;
+    }
+    
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgba(0, 0, 0, 0.2);
+    }
   }
 }
 
@@ -602,7 +724,6 @@ watch(route, () => {
           
           &:hover {
             background-color: rgba(0, 216, 255, 0.08);
-            box-shadow: inset 0 0 0 1px rgba(0, 216, 255, 0.3);
             color: #00D8FF;
           }
         }
@@ -610,16 +731,18 @@ watch(route, () => {
         > .el-menu-item.is-active {
           background-color: rgba(0, 216, 255, 0.2);
           border-right: 4px solid #00D8FF;
-          box-shadow: inset 0 0 0 1px rgba(0, 216, 255, 0.4);
           color: #00D8FF;
-          text-shadow: 0 0 8px rgba(0, 216, 255, 0.5);
         }
         
         .el-sub-menu.is-opened > .el-sub-menu__title {
           background-color: rgba(0, 216, 255, 0.15);
-          box-shadow: inset 0 0 0 1px rgba(0, 216, 255, 0.35);
           color: #00D8FF;
-          text-shadow: 0 0 6px rgba(0, 216, 255, 0.4);
+          
+          span {
+             background: linear-gradient(90deg, transparent, rgba(0, 216, 255, 0.15), transparent);
+             padding: 2px 4px;
+             border-radius: 3px;
+           }
         }
         
         // 工厂主题二级菜单
@@ -635,8 +758,10 @@ watch(route, () => {
           }
           
           .el-menu-item.is-active {
+            background-color: rgba(0, 216, 255, 0.1);
             border-right: 3px solid #00D8FF;
             color: #00D8FF;
+            font-weight: 600;
           }
         }
       }
@@ -680,22 +805,25 @@ watch(route, () => {
           color: var(--el-text-color-primary);
           
           &:hover {
-            background-color: rgba(64, 158, 255, 0.1);
-            box-shadow: inset 0 0 0 1px rgba(64, 158, 255, 0.25);
+            background-color: rgba(64, 158, 255, 0.15);
           }
         }
         
         > .el-menu-item.is-active {
-          background-color: rgba(64, 158, 255, 0.18);
+          background-color: rgba(64, 158, 255, 0.25);
           border-right: 4px solid var(--el-color-primary);
-          box-shadow: inset 0 0 0 1px rgba(64, 158, 255, 0.35);
           color: var(--el-color-primary);
         }
         
         .el-sub-menu.is-opened > .el-sub-menu__title {
-          background-color: rgba(64, 158, 255, 0.15);
-          box-shadow: inset 0 0 0 1px rgba(64, 158, 255, 0.3);
+          background-color: rgba(64, 158, 255, 0.2);
           color: var(--el-color-primary);
+          
+          span {
+             background: linear-gradient(90deg, transparent, rgba(64, 158, 255, 0.12), transparent);
+             padding: 2px 4px;
+             border-radius: 3px;
+           }
         }
         
         // 暗黑主题二级菜单
@@ -711,8 +839,10 @@ watch(route, () => {
           }
           
           .el-menu-item.is-active {
+            background-color: rgba(64, 158, 255, 0.15);
             border-right: 3px solid var(--el-color-primary);
             color: var(--el-color-primary);
+            font-weight: 600;
           }
         }
       }

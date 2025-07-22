@@ -218,6 +218,7 @@
       title="审批处理"
       width="600px"
       :close-on-click-modal="false"
+      class="approval-dialog"
     >
       <div class="approval-detail">
         <el-descriptions :column="2" border>
@@ -556,6 +557,26 @@ onMounted(() => {
   gap: 12px;
 }
 
+/* 审批对话框样式优化 */
+.approval-dialog :deep(.el-dialog__body) {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.approval-dialog :deep(.el-dialog) {
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.approval-dialog :deep(.el-dialog__footer) {
+  flex-shrink: 0;
+  border-top: 1px solid var(--el-border-color-light);
+  padding: 15px 20px;
+  margin: 0;
+}
+
 /* 工厂主题特效 */
 [data-theme="factory"] .description {
   background: rgba(0, 212, 255, 0.05);
@@ -573,4 +594,4 @@ onMounted(() => {
     justify-content: center;
   }
 }
-</style> 
+</style>

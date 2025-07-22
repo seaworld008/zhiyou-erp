@@ -288,20 +288,20 @@
           <div class="completion-records" style="margin-top: 20px;">
             <h3>完工记录</h3>
             <el-table :data="completionRecords" border stripe>
-              <el-table-column prop="order_no" label="工单号" width="150" />
-              <el-table-column prop="product_name" label="产品名称" width="200" />
-              <el-table-column prop="completed_qty" label="完工数量" width="100" align="center" />
-              <el-table-column prop="good_qty" label="合格数量" width="100" align="center" />
-              <el-table-column prop="defect_qty" label="不良数量" width="100" align="center" />
-              <el-table-column label="合格率" width="100" align="center">
+              <el-table-column prop="order_no" label="工单号" width="140" />
+              <el-table-column prop="product_name" label="产品名称" width="180" show-overflow-tooltip />
+              <el-table-column prop="completed_qty" label="完工数量" width="90" align="center" />
+              <el-table-column prop="good_qty" label="合格数量" width="90" align="center" />
+              <el-table-column prop="defect_qty" label="不良数量" width="90" align="center" />
+              <el-table-column label="合格率" width="90" align="center">
                 <template #default="scope">
                   <span :class="getQualityClass(scope.row.good_qty / scope.row.completed_qty)">
                     {{ ((scope.row.good_qty / scope.row.completed_qty) * 100).toFixed(1) }}%
                   </span>
                 </template>
               </el-table-column>
-              <el-table-column prop="completion_time" label="完工时间" width="160" />
-              <el-table-column prop="operator_name" label="操作员" width="100" />
+              <el-table-column prop="completion_time" label="完工时间" width="180" show-overflow-tooltip />
+              <el-table-column prop="operator_name" label="操作员" width="100" show-overflow-tooltip />
             </el-table>
           </div>
         </el-tab-pane>
@@ -348,13 +348,13 @@
         <div style="margin-top: 20px">
           <h4>报工记录</h4>
           <el-table :data="workReports" border size="small">
-            <el-table-column prop="report_time" label="报工时间" width="150" />
-            <el-table-column prop="operator" label="操作员" width="100" />
-            <el-table-column prop="completed_qty" label="完成数量" width="100" align="center" />
-            <el-table-column prop="good_qty" label="合格数量" width="100" align="center" />
-            <el-table-column prop="defect_qty" label="不良数量" width="100" align="center" />
+            <el-table-column prop="report_time" label="报工时间" width="160" show-overflow-tooltip />
+            <el-table-column prop="operator" label="操作员" width="100" show-overflow-tooltip />
+            <el-table-column prop="completed_qty" label="完成数量" width="90" align="center" />
+            <el-table-column prop="good_qty" label="合格数量" width="90" align="center" />
+            <el-table-column prop="defect_qty" label="不良数量" width="90" align="center" />
             <el-table-column prop="efficiency" label="效率" width="80" align="center" />
-            <el-table-column prop="remark" label="备注" />
+            <el-table-column prop="remark" label="备注" show-overflow-tooltip />
           </el-table>
         </div>
       </div>
@@ -1176,6 +1176,21 @@ onMounted(() => {
         margin-bottom: 15px;
         color: var(--el-text-color-primary);
       }
+
+      :deep(.el-table) {
+        .el-table__cell {
+          padding: 8px 4px;
+          font-size: 13px;
+          line-height: 1.4;
+        }
+
+        .el-table__header-wrapper {
+          .el-table__cell {
+            font-weight: 600;
+            background-color: var(--el-fill-color-light);
+          }
+        }
+      }
     }
   }
 
@@ -1187,6 +1202,21 @@ onMounted(() => {
     h4 {
       margin: 20px 0 15px 0;
       color: var(--el-text-color-primary);
+    }
+
+    :deep(.el-table) {
+      .el-table__cell {
+        padding: 6px 4px;
+        font-size: 12px;
+        line-height: 1.3;
+      }
+
+      .el-table__header-wrapper {
+        .el-table__cell {
+          font-weight: 600;
+          background-color: var(--el-fill-color-light);
+        }
+      }
     }
   }
 
@@ -1260,4 +1290,4 @@ onMounted(() => {
     }
   }
 }
-</style> 
+</style>
