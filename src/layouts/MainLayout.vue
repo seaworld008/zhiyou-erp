@@ -492,27 +492,9 @@ watch(route, () => {
           position: relative;
           transition: all 0.3s ease;
           
-          // 添加左侧缩进指示线
-          &::before {
-            content: '';
-            position: absolute;
-            left: 32px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 8px;
-            height: 1px;
-            background-color: rgba(64, 158, 255, 0.3);
-            transition: all 0.3s ease;
-          }
-          
           &:hover {
             background-color: rgba(64, 158, 255, 0.06);
             padding-left: 54px;
-            
-            &::before {
-              width: 12px;
-              background-color: rgba(64, 158, 255, 0.5);
-            }
           }
           
           .el-icon {
@@ -539,12 +521,6 @@ watch(route, () => {
           color: var(--el-color-primary);
           font-weight: 500;
           padding-left: 56px;
-          
-          &::before {
-            width: 16px;
-            height: 2px;
-            background-color: var(--el-color-primary);
-          }
           
           .el-icon {
             opacity: 1;
@@ -656,17 +632,9 @@ watch(route, () => {
           .el-menu-item {
             color: rgba(255, 255, 255, 0.9);
             
-            &::before {
-              background-color: rgba(0, 216, 255, 0.4);
-            }
-            
             &:hover {
               background-color: rgba(0, 216, 255, 0.06);
               color: #00D8FF;
-              
-              &::before {
-                background-color: rgba(0, 216, 255, 0.6);
-              }
             }
           }
           
@@ -675,11 +643,6 @@ watch(route, () => {
             border-right: 3px solid #00D8FF;
             color: #00D8FF;
             text-shadow: 0 0 6px rgba(0, 216, 255, 0.4);
-            
-            &::before {
-              background-color: #00D8FF;
-              box-shadow: 0 0 4px rgba(0, 216, 255, 0.5);
-            }
           }
         }
       }
@@ -748,17 +711,9 @@ watch(route, () => {
           .el-menu-item {
             color: var(--el-text-color-regular);
             
-            &::before {
-              background-color: rgba(64, 158, 255, 0.4);
-            }
-            
             &:hover {
               background-color: rgba(64, 158, 255, 0.08);
               color: var(--el-text-color-primary);
-              
-              &::before {
-                background-color: rgba(64, 158, 255, 0.6);
-              }
             }
           }
           
@@ -766,10 +721,6 @@ watch(route, () => {
             background-color: rgba(64, 158, 255, 0.15);
             border-right: 3px solid var(--el-color-primary);
             color: var(--el-color-primary);
-            
-            &::before {
-              background-color: var(--el-color-primary);
-            }
           }
         }
       }
